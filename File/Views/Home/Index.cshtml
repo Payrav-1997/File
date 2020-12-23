@@ -1,0 +1,41 @@
+﻿@model IEnumerable<File.Models.FileModel>
+@{
+    ViewData["Title"] = "Добавление файла";
+}
+
+<h3>Выберите файл для загрузки</h3>
+<form asp-action="AddFile" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" class="alert-danger" /><br>
+    <input type="submit" value="Загрузить" class="btn btn-danger" />
+    @*@if(ViewBag.QRCode != null)
+    {
+        <img src="@ViewBag.QRCode" style="width:200px;height:200px;" />
+
+    }*@
+    <table class="table table-active table-bordered table-hover">
+
+        <thead>
+            <tr>
+                <td><d>ID</d></td>
+                <td><d>Название</d></td>
+                <td><d>Путь к файлу</d></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Name</td>
+                    <td>@x.Path</td>
+                    <td><a class="btn btn-danger" asp-action="Delete" asp-controller="Home" asp-route-id="@x.Id" id="Delete">Удалить</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+
+
+
